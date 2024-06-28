@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BD_Recursos_HumanosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cambio_designacion">
+    <Key>
+      <PropertyRef Name="Id_designacion" />
+    </Key>
+    <Property Name="Id_designacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre_Completo" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="Fecha" Type="date" />
+    <Property Name="Cedula" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Id_Cargo_Actual" Type="int" />
+    <Property Name="Id_Cargo_Nuevo" Type="int" />
+    <Property Name="Salario_Propuesto" Type="money" Nullable="false" />
+    <Property Name="Id_Departamento_Propuesto" Type="int" />
+    <Property Name="Referido_por" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Observaciones" Type="varchar" MaxLength="100" />
+    <Property Name="Estatus" Type="varchar" MaxLength="20" />
+    <Property Name="Archivo" Type="varbinary(max)" />
+    <Property Name="Extension" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Cargo">
+    <Key>
+      <PropertyRef Name="Id_Cargo" />
+    </Key>
+    <Property Name="Id_Cargo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre_Cargo" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Departamento">
+    <Key>
+      <PropertyRef Name="Id_Departamento" />
+    </Key>
+    <Property Name="Id_Departamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre_Departamento" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Solicitud_nombramiento">
+    <Key>
+      <PropertyRef Name="Id_solicitud" />
+    </Key>
+    <Property Name="Id_solicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha" Type="date" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Apellido" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Cedula" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Sexo" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Id_Departamento" Type="int" />
+    <Property Name="Id_Cargo" Type="int" />
+    <Property Name="Grupo_ocupacional" Type="varchar" MaxLength="10" />
+    <Property Name="Sustitucion" Type="varchar" MaxLength="50" />
+    <Property Name="Salario" Type="money" Nullable="false" />
+    <Property Name="Direccion_de_residencia" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Autorizado" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Observaciones" Type="varchar" MaxLength="30" />
+    <Property Name="Enviado_en_oficialNo" Type="varchar" MaxLength="30" />
+    <Property Name="Pregunta" Type="varchar" MaxLength="20" />
+    <Property Name="NoOficioyFecha" Type="varchar" MaxLength="30" />
+    <Property Name="Archivo_Cedula_identidad" Type="varbinary(max)" />
+    <Property Name="Extension_Cedula_identidad" Type="varchar" MaxLength="50" />
+    <Property Name="Archivo_HojaVida_identidad" Type="varbinary(max)" />
+    <Property Name="Extension_HojaVida_identidad" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Solicitud_reajuste">
+    <Key>
+      <PropertyRef Name="Id_reajuste" />
+    </Key>
+    <Property Name="Id_reajuste" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre_Completo" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="Fecha" Type="date" />
+    <Property Name="Cedula" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Id_Cargo_Actual" Type="int" />
+    <Property Name="Salario_Propuesto" Type="money" Nullable="false" />
+    <Property Name="Id_Departamento_Propuesto" Type="int" />
+    <Property Name="Referido_por" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Observaciones" Type="varchar" MaxLength="100" />
+    <Property Name="Archivo" Type="varbinary(max)" />
+    <Property Name="Extension" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreUsuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Contraseña" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Cambio_Cargo_Actual">
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="0..1" />
+    <End Role="Cambio_designacion" Type="Self.Cambio_designacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="Id_Cargo" />
+      </Principal>
+      <Dependent Role="Cambio_designacion">
+        <PropertyRef Name="Id_Cargo_Actual" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cambio_Cargo_Nuevo">
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="0..1" />
+    <End Role="Cambio_designacion" Type="Self.Cambio_designacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="Id_Cargo" />
+      </Principal>
+      <Dependent Role="Cambio_designacion">
+        <PropertyRef Name="Id_Cargo_Nuevo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cambio_Departamento">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="0..1" />
+    <End Role="Cambio_designacion" Type="Self.Cambio_designacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="Id_Departamento" />
+      </Principal>
+      <Dependent Role="Cambio_designacion">
+        <PropertyRef Name="Id_Departamento_Propuesto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cargo_Actual">
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="0..1" />
+    <End Role="Solicitud_reajuste" Type="Self.Solicitud_reajuste" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="Id_Cargo" />
+      </Principal>
+      <Dependent Role="Solicitud_reajuste">
+        <PropertyRef Name="Id_Cargo_Actual" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Departamento">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="0..1" />
+    <End Role="Solicitud_reajuste" Type="Self.Solicitud_reajuste" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="Id_Departamento" />
+      </Principal>
+      <Dependent Role="Solicitud_reajuste">
+        <PropertyRef Name="Id_Departamento_Propuesto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_Cargo">
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="0..1" />
+    <End Role="Solicitud_nombramiento" Type="Self.Solicitud_nombramiento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="Id_Cargo" />
+      </Principal>
+      <Dependent Role="Solicitud_nombramiento">
+        <PropertyRef Name="Id_Cargo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_Departamento">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="0..1" />
+    <End Role="Solicitud_nombramiento" Type="Self.Solicitud_nombramiento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="Id_Departamento" />
+      </Principal>
+      <Dependent Role="Solicitud_nombramiento">
+        <PropertyRef Name="Id_Departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BD_Recursos_HumanosModelStoreContainer">
+    <EntitySet Name="Cambio_designacion" EntityType="Self.Cambio_designacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cargo" EntityType="Self.Cargo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Solicitud_nombramiento" EntityType="Self.Solicitud_nombramiento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Solicitud_reajuste" EntityType="Self.Solicitud_reajuste" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Cambio_Cargo_Actual" Association="Self.FK_Cambio_Cargo_Actual">
+      <End Role="Cargo" EntitySet="Cargo" />
+      <End Role="Cambio_designacion" EntitySet="Cambio_designacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cambio_Cargo_Nuevo" Association="Self.FK_Cambio_Cargo_Nuevo">
+      <End Role="Cargo" EntitySet="Cargo" />
+      <End Role="Cambio_designacion" EntitySet="Cambio_designacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cambio_Departamento" Association="Self.FK_Cambio_Departamento">
+      <End Role="Departamento" EntitySet="Departamento" />
+      <End Role="Cambio_designacion" EntitySet="Cambio_designacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cargo_Actual" Association="Self.FK_Cargo_Actual">
+      <End Role="Cargo" EntitySet="Cargo" />
+      <End Role="Solicitud_reajuste" EntitySet="Solicitud_reajuste" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Departamento" Association="Self.FK_Departamento">
+      <End Role="Departamento" EntitySet="Departamento" />
+      <End Role="Solicitud_reajuste" EntitySet="Solicitud_reajuste" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_Cargo" Association="Self.FK_Solicitud_Cargo">
+      <End Role="Cargo" EntitySet="Cargo" />
+      <End Role="Solicitud_nombramiento" EntitySet="Solicitud_nombramiento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_Departamento" Association="Self.FK_Solicitud_Departamento">
+      <End Role="Departamento" EntitySet="Departamento" />
+      <End Role="Solicitud_nombramiento" EntitySet="Solicitud_nombramiento" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

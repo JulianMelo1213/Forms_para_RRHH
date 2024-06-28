@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BD_Recursos_HumanosModelStoreContainer" CdmEntityContainer="BD_Recursos_HumanosEntities4">
+    <EntitySetMapping Name="Cambio_designacion">
+      <EntityTypeMapping TypeName="BD_Recursos_HumanosModel.Cambio_designacion">
+        <MappingFragment StoreEntitySet="Cambio_designacion">
+          <ScalarProperty Name="Id_designacion" ColumnName="Id_designacion" />
+          <ScalarProperty Name="Nombre_Completo" ColumnName="Nombre_Completo" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="Id_Cargo_Actual" ColumnName="Id_Cargo_Actual" />
+          <ScalarProperty Name="Id_Cargo_Nuevo" ColumnName="Id_Cargo_Nuevo" />
+          <ScalarProperty Name="Salario_Propuesto" ColumnName="Salario_Propuesto" />
+          <ScalarProperty Name="Id_Departamento_Propuesto" ColumnName="Id_Departamento_Propuesto" />
+          <ScalarProperty Name="Referido_por" ColumnName="Referido_por" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+          <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cargoes">
+      <EntityTypeMapping TypeName="BD_Recursos_HumanosModel.Cargo">
+        <MappingFragment StoreEntitySet="Cargo">
+          <ScalarProperty Name="Id_Cargo" ColumnName="Id_Cargo" />
+          <ScalarProperty Name="Nombre_Cargo" ColumnName="Nombre_Cargo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departamentoes">
+      <EntityTypeMapping TypeName="BD_Recursos_HumanosModel.Departamento">
+        <MappingFragment StoreEntitySet="Departamento">
+          <ScalarProperty Name="Id_Departamento" ColumnName="Id_Departamento" />
+          <ScalarProperty Name="Nombre_Departamento" ColumnName="Nombre_Departamento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Solicitud_nombramiento">
+      <EntityTypeMapping TypeName="BD_Recursos_HumanosModel.Solicitud_nombramiento">
+        <MappingFragment StoreEntitySet="Solicitud_nombramiento">
+          <ScalarProperty Name="Id_solicitud" ColumnName="Id_solicitud" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="Id_Departamento" ColumnName="Id_Departamento" />
+          <ScalarProperty Name="Id_Cargo" ColumnName="Id_Cargo" />
+          <ScalarProperty Name="Grupo_ocupacional" ColumnName="Grupo_ocupacional" />
+          <ScalarProperty Name="Sustitucion" ColumnName="Sustitucion" />
+          <ScalarProperty Name="Salario" ColumnName="Salario" />
+          <ScalarProperty Name="Direccion_de_residencia" ColumnName="Direccion_de_residencia" />
+          <ScalarProperty Name="Autorizado" ColumnName="Autorizado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="Enviado_en_oficialNo" ColumnName="Enviado_en_oficialNo" />
+          <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+          <ScalarProperty Name="NoOficioyFecha" ColumnName="NoOficioyFecha" />
+          <ScalarProperty Name="Archivo_Cedula_identidad" ColumnName="Archivo_Cedula_identidad" />
+          <ScalarProperty Name="Extension_Cedula_identidad" ColumnName="Extension_Cedula_identidad" />
+          <ScalarProperty Name="Archivo_HojaVida_identidad" ColumnName="Archivo_HojaVida_identidad" />
+          <ScalarProperty Name="Extension_HojaVida_identidad" ColumnName="Extension_HojaVida_identidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="BD_Recursos_HumanosModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+          <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Solicitud_reajuste">
+      <EntityTypeMapping TypeName="BD_Recursos_HumanosModel.Solicitud_reajuste">
+        <MappingFragment StoreEntitySet="Solicitud_reajuste">
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="Referido_por" ColumnName="Referido_por" />
+          <ScalarProperty Name="Id_Departamento_Propuesto" ColumnName="Id_Departamento_Propuesto" />
+          <ScalarProperty Name="Salario_Propuesto" ColumnName="Salario_Propuesto" />
+          <ScalarProperty Name="Id_Cargo_Actual" ColumnName="Id_Cargo_Actual" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Nombre_Completo" ColumnName="Nombre_Completo" />
+          <ScalarProperty Name="Id_reajuste" ColumnName="Id_reajuste" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BD_Recursos_HumanosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cambio_designacion">
+    <Key>
+      <PropertyRef Name="Id_designacion" />
+    </Key>
+    <Property Name="Id_designacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_Completo" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Precision="0" />
+    <Property Name="Cedula" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Id_Cargo_Actual" Type="Int32" />
+    <Property Name="Id_Cargo_Nuevo" Type="Int32" />
+    <Property Name="Salario_Propuesto" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Id_Departamento_Propuesto" Type="Int32" />
+    <Property Name="Referido_por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Observaciones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Estatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Archivo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Extension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cargo" Relationship="Self.FK_Cambio_Cargo_Actual" FromRole="Cambio_designacion" ToRole="Cargo" />
+    <NavigationProperty Name="Cargo1" Relationship="Self.FK_Cambio_Cargo_Nuevo" FromRole="Cambio_designacion" ToRole="Cargo" />
+    <NavigationProperty Name="Departamento" Relationship="Self.FK_Cambio_Departamento" FromRole="Cambio_designacion" ToRole="Departamento" />
+  </EntityType>
+  <EntityType Name="Cargo">
+    <Key>
+      <PropertyRef Name="Id_Cargo" />
+    </Key>
+    <Property Name="Id_Cargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_Cargo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Cambio_designacion" Relationship="Self.FK_Cambio_Cargo_Actual" FromRole="Cargo" ToRole="Cambio_designacion" />
+    <NavigationProperty Name="Cambio_designacion1" Relationship="Self.FK_Cambio_Cargo_Nuevo" FromRole="Cargo" ToRole="Cambio_designacion" />
+    <NavigationProperty Name="Solicitud_nombramiento" Relationship="Self.FK_Solicitud_Cargo" FromRole="Cargo" ToRole="Solicitud_nombramiento" />
+    <NavigationProperty Name="Solicitud_reajuste" Relationship="BD_Recursos_HumanosModel.FK_Cargo_Actual" FromRole="Cargo" ToRole="Solicitud_reajuste" />
+  </EntityType>
+  <EntityType Name="Departamento">
+    <Key>
+      <PropertyRef Name="Id_Departamento" />
+    </Key>
+    <Property Name="Id_Departamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_Departamento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Cambio_designacion" Relationship="Self.FK_Cambio_Departamento" FromRole="Departamento" ToRole="Cambio_designacion" />
+    <NavigationProperty Name="Solicitud_nombramiento" Relationship="Self.FK_Solicitud_Departamento" FromRole="Departamento" ToRole="Solicitud_nombramiento" />
+    <NavigationProperty Name="Solicitud_reajuste" Relationship="BD_Recursos_HumanosModel.FK_Departamento" FromRole="Departamento" ToRole="Solicitud_reajuste" />
+  </EntityType>
+  <EntityType Name="Solicitud_nombramiento">
+    <Key>
+      <PropertyRef Name="Id_solicitud" />
+    </Key>
+    <Property Name="Id_solicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha" Type="DateTime" Precision="0" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cedula" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sexo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Id_Departamento" Type="Int32" />
+    <Property Name="Id_Cargo" Type="Int32" />
+    <Property Name="Grupo_ocupacional" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Sustitucion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Salario" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Direccion_de_residencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Autorizado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Observaciones" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Enviado_en_oficialNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Pregunta" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="NoOficioyFecha" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Archivo_Cedula_identidad" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Extension_Cedula_identidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Archivo_HojaVida_identidad" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Extension_HojaVida_identidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cargo" Relationship="Self.FK_Solicitud_Cargo" FromRole="Solicitud_nombramiento" ToRole="Cargo" />
+    <NavigationProperty Name="Departamento" Relationship="Self.FK_Solicitud_Departamento" FromRole="Solicitud_nombramiento" ToRole="Departamento" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Contraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Cambio_Cargo_Actual">
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="0..1" />
+    <End Role="Cambio_designacion" Type="Self.Cambio_designacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="Id_Cargo" />
+      </Principal>
+      <Dependent Role="Cambio_designacion">
+        <PropertyRef Name="Id_Cargo_Actual" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cambio_Cargo_Nuevo">
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="0..1" />
+    <End Role="Cambio_designacion" Type="Self.Cambio_designacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="Id_Cargo" />
+      </Principal>
+      <Dependent Role="Cambio_designacion">
+        <PropertyRef Name="Id_Cargo_Nuevo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cambio_Departamento">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="0..1" />
+    <End Role="Cambio_designacion" Type="Self.Cambio_designacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="Id_Departamento" />
+      </Principal>
+      <Dependent Role="Cambio_designacion">
+        <PropertyRef Name="Id_Departamento_Propuesto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_Cargo">
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="0..1" />
+    <End Role="Solicitud_nombramiento" Type="Self.Solicitud_nombramiento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="Id_Cargo" />
+      </Principal>
+      <Dependent Role="Solicitud_nombramiento">
+        <PropertyRef Name="Id_Cargo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_Departamento">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="0..1" />
+    <End Role="Solicitud_nombramiento" Type="Self.Solicitud_nombramiento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="Id_Departamento" />
+      </Principal>
+      <Dependent Role="Solicitud_nombramiento">
+        <PropertyRef Name="Id_Departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BD_Recursos_HumanosEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cambio_designacion" EntityType="Self.Cambio_designacion" />
+    <EntitySet Name="Cargoes" EntityType="Self.Cargo" />
+    <EntitySet Name="Departamentoes" EntityType="Self.Departamento" />
+    <EntitySet Name="Solicitud_nombramiento" EntityType="Self.Solicitud_nombramiento" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK_Cambio_Cargo_Actual" Association="Self.FK_Cambio_Cargo_Actual">
+      <End Role="Cargo" EntitySet="Cargoes" />
+      <End Role="Cambio_designacion" EntitySet="Cambio_designacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cambio_Cargo_Nuevo" Association="Self.FK_Cambio_Cargo_Nuevo">
+      <End Role="Cargo" EntitySet="Cargoes" />
+      <End Role="Cambio_designacion" EntitySet="Cambio_designacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cambio_Departamento" Association="Self.FK_Cambio_Departamento">
+      <End Role="Departamento" EntitySet="Departamentoes" />
+      <End Role="Cambio_designacion" EntitySet="Cambio_designacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_Cargo" Association="Self.FK_Solicitud_Cargo">
+      <End Role="Cargo" EntitySet="Cargoes" />
+      <End Role="Solicitud_nombramiento" EntitySet="Solicitud_nombramiento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_Departamento" Association="Self.FK_Solicitud_Departamento">
+      <End Role="Departamento" EntitySet="Departamentoes" />
+      <End Role="Solicitud_nombramiento" EntitySet="Solicitud_nombramiento" />
+    </AssociationSet>
+    <EntitySet Name="Solicitud_reajuste" EntityType="BD_Recursos_HumanosModel.Solicitud_reajuste" />
+    <AssociationSet Name="FK_Cargo_Actual" Association="BD_Recursos_HumanosModel.FK_Cargo_Actual">
+      <End Role="Cargo" EntitySet="Cargoes" />
+      <End Role="Solicitud_reajuste" EntitySet="Solicitud_reajuste" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Departamento" Association="BD_Recursos_HumanosModel.FK_Departamento">
+      <End Role="Departamento" EntitySet="Departamentoes" />
+      <End Role="Solicitud_reajuste" EntitySet="Solicitud_reajuste" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Solicitud_reajuste">
+    <Key>
+      <PropertyRef Name="Id_reajuste" />
+    </Key>
+    <Property Name="Id_reajuste" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_Completo" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" Precision="0" />
+    <Property Name="Cedula" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Cargo_Actual" Type="Int32" />
+    <Property Name="Salario_Propuesto" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Id_Departamento_Propuesto" Type="Int32" />
+    <Property Name="Referido_por" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Observaciones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Archivo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Extension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cargo" Relationship="BD_Recursos_HumanosModel.FK_Cargo_Actual" FromRole="Solicitud_reajuste" ToRole="Cargo" />
+    <NavigationProperty Name="Departamento" Relationship="BD_Recursos_HumanosModel.FK_Departamento" FromRole="Solicitud_reajuste" ToRole="Departamento" />
+  </EntityType>
+  <Association Name="FK_Cargo_Actual">
+    <End Type="BD_Recursos_HumanosModel.Cargo" Role="Cargo" Multiplicity="0..1" />
+    <End Type="BD_Recursos_HumanosModel.Solicitud_reajuste" Role="Solicitud_reajuste" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="Id_Cargo" />
+      </Principal>
+      <Dependent Role="Solicitud_reajuste">
+        <PropertyRef Name="Id_Cargo_Actual" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Departamento">
+    <End Type="BD_Recursos_HumanosModel.Departamento" Role="Departamento" Multiplicity="0..1" />
+    <End Type="BD_Recursos_HumanosModel.Solicitud_reajuste" Role="Solicitud_reajuste" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="Id_Departamento" />
+      </Principal>
+      <Dependent Role="Solicitud_reajuste">
+        <PropertyRef Name="Id_Departamento_Propuesto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
